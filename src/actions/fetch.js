@@ -26,7 +26,7 @@ const fetchMemes = () => (dispatch) => {
   const url = "https://api.imgflip.com/get_memes";
   fetch(url)
     .then((response) => response.json())
-    .then(json => dispatch(requestMemesSuccess(json.data)))
+    .then((json) => dispatch(requestMemesSuccess(json.data)))
     .catch((err) => dispatch(requestMemesError(err)));
 };
 
