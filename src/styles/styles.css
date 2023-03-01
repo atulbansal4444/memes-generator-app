@@ -39,4 +39,36 @@ body {
   position: absolute;
   border-radius: 5px;
   bottom: 0;
+  animation-name: da;
+  animation-duration: 1s;
+  font-size: 14px;
+}
+
+@keyframes da {
+  from {
+    opacity: 0;
+  };
+  to {
+    opacity: 100;
+  };
+}
+
+.no-txt {
+  display: none;
+}
+
+.darken-img {
+  background-color: gray;
+  filter: brightness(90%);
+  animation-name: dark;
+  animation-duration: 1s;
+}
+
+@keyframes dark {
+  from {
+    filter: brightness(90%);
+  };
+  to {
+    filter: brightness(10%);
+  };
 }
