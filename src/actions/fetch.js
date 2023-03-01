@@ -1,3 +1,5 @@
+import { username, password } from './secretKey';
+
 const REQUEST_MEMES = "REQUEST_MEMES";
 const requestMemes = () => {
   return {
@@ -30,6 +32,54 @@ const fetchMemes = () => (dispatch) => {
     .catch((err) => dispatch(requestMemesError(err)));
 };
 
+// const NEW_MEME = 'NEW_MEME';
+// const newMeme = meme => {
+//   return {
+//     type: NEW_MEME,
+//     meme
+//   };
+// };
+
+const POST_MEME = 'POST_MEME';
+
+const POST_MEME_SUCCES = 'POST_MEME_SUCCESS';
+const postMemeSuccess = json => {
+  return {
+    type: POST_MEME_SUCCES,
+    json
+  };
+};
+
+const POST_MEME_ERROR = 'POST_MEME_ERROR';
+const postMemeError = err => {
+  return {
+    type: POST_MEME_ERROR,
+    err
+  };
+};
+
+const postMeme = params => dispatch => {
+  dispatch(postMeme);
+  params["username"] = username;
+  params["password"] = password;
+
+  const bodyParams = Object.keys(params).map(key => {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+  }).join('&');
+
+  console.log(bodyParams);
+
+  fetch("https://api.imgflip.com/caption_image", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: bodyParams
+  }).then(response => response.json)
+    .then(json => dispatch(postMemeSuccess(json)))
+    .catch(err => dispatch(postMemeError(err)));
+}
+
 export {
   REQUEST_MEMES,
   requestMemes,
@@ -38,4 +88,12 @@ export {
   REQUEST_MEMES_ERROR,
   requestMemesError,
   fetchMemes,
+  // NEW_MEME,
+  // newMeme,
+  POST_MEME,
+  postMeme,
+  POST_MEME_SUCCES,
+  postMemeSuccess,
+  POST_MEME_ERROR,
+  postMemeError
 };
