@@ -1,4 +1,5 @@
-const getMemes = (state) => state.Memes.memes;
-const isFetchingMemes = (state) => state.Memes.isFetchingMemes;
+const getMemes = state => state.Memes.memes;
+const isFetchingMemes = state => state.Memes.isFetchingMemes;
+const getMyMemesArray = state => state.MyMemes.myMemes;
 
-export { getMemes, isFetchingMemes };
+export { getMemes, isFetchingMemes, getMyMemesArray };
