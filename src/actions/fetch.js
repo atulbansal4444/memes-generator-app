@@ -32,14 +32,6 @@ const fetchMemes = () => (dispatch) => {
     .catch((err) => dispatch(requestMemesError(err)));
 };
 
-// const NEW_MEME = 'NEW_MEME';
-// const newMeme = meme => {
-//   return {
-//     type: NEW_MEME,
-//     meme
-//   };
-// };
-
 const POST_MEME = 'POST_MEME';
 
 const POST_MEME_SUCCES = 'POST_MEME_SUCCESS';
@@ -94,8 +86,6 @@ export {
   REQUEST_MEMES_ERROR,
   requestMemesError,
   fetchMemes,
-  // NEW_MEME,
-  // newMeme,
   POST_MEME,
   postMeme,
   POST_MEME_SUCCES,
