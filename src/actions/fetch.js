@@ -43,10 +43,10 @@ const fetchMemes = () => (dispatch) => {
 const POST_MEME = 'POST_MEME';
 
 const POST_MEME_SUCCES = 'POST_MEME_SUCCESS';
-const postMemeSuccess = json => {
+const postMemeSuccess = data => {
   return {
     type: POST_MEME_SUCCES,
-    json
+    data
   };
 };
 
@@ -67,17 +67,23 @@ const postMeme = params => dispatch => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
   }).join('&');
 
-  console.log(bodyParams);
-
   fetch("https://api.imgflip.com/caption_image", {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: bodyParams
-  }).then(response => response.json)
-    .then(json => dispatch(postMemeSuccess(json)))
-    .catch(err => dispatch(postMemeError(err)));
+  }).then(response => response.json())
+    .then(json => {
+      if (json.success) {
+        dispatch(postMemeSuccess(json.data));
+      } else {
+        dispatch(postMemeError(json.error_message));
+      }
+    })
+    .catch(err => {
+      dispatch(postMemeError(err.message));
+    });
 }
 
 export {

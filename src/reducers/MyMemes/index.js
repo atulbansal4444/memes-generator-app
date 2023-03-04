@@ -17,13 +17,16 @@ const MyMemes = (
         isAddingNewMeme: true
       };
     case POST_MEME_SUCCES:
+      let myMemesRef = [...state.myMemes];
+      myMemesRef.push(action.data);
       return {
         ...state,
         isAddingNewMeme: false,
-        myMemes: state.myMemes.push(action.meme)
+        myMemes: myMemesRef
       };
     case POST_MEME_ERROR:
       return {
+        ...state,
         isAddingNewMeme: false,
         errMsg: action.err
       };
