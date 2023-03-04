@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { CircularProgress } from "@mui/material";
 import MemesItemsContainer from "./MemesItems";
 import { Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import MyMemesContainer from "./MyMemes";
 
 import "../styles/styles.css";
 
@@ -14,12 +15,9 @@ const App = ({ isFetchingMemes, memesList }) => {
   const [bottomText, setBottomText] = useState('');
   return (
     <div className="app">
-      <h2>
-        <u>Memes Generator</u>
-      </h2>
-      <h4>
-        <i>Write some text</i>
-      </h4>
+      <h2><u>Memes Generator</u></h2>
+      <MyMemesContainer />
+      <h4><i>Write some text</i></h4>
       <Form inline={'true'}>
         <FormGroup>
           <FormLabel>Top</FormLabel>
@@ -41,10 +39,9 @@ const App = ({ isFetchingMemes, memesList }) => {
               topText={topText} bottomText={bottomText} id={meme.id} />;
           })
       }
-      <div
-        className="btn-load-more-memes"
-        onClick={() => setMemesLimit(memesLimit + 10)}
-      >
+      <div className="btn-load-more-memes" onClick={() =>
+        setMemesLimit(memesLimit + 10)
+      }>
         Load 10 more memes...
       </div>
     </div>

@@ -72,3 +72,12 @@ body {
     filter: brightness(10%);
   };
 }
+
+.my-meme-image {
+  position: relative;
+  display: block;
+  padding: 5px;
+  width: 220px;
+  border-radius: 4px;
+  bottom: 3px solid white;
+}
