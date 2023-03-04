@@ -9,8 +9,6 @@ const MyMemes = (
   action
 ) => {
   switch (action.type) {
-    // case NEW_MEME:
-    //   return [...state, action.meme];
     case POST_MEME:
       return {
         ...state,
